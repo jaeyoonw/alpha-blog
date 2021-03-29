@@ -4,9 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
+#이 상단부분에 있는 것들은 보편적으로 사용되는 것들
 gem 'rails', '~> 6.1.3'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -30,7 +30,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  #즉, 간단히말해 이것은 그룹개발, 테스트 환경 전용이며 보편적으로 사용되지 않는 것들 
+
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
@@ -51,6 +55,10 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
+
+group :production do 
+  gem 'pg'
+end 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
