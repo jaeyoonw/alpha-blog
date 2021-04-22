@@ -1,17 +1,41 @@
 class ArticlesController < ApplicationController
-  def show 
-    # byebug 웹서버를 잠시 일시중지시키고 디버그 하는 라이브러리 파일 실행 
+  def show #articles/id 
+    #byebug 
     @article = Article.find(params[:id])
+    
   end 
 
-  def index 
+  def index # articles 
     @articles = Article.all 
   end 
 
-  def new 
+  def new # articles/new 
+    @article = Article.new
   end 
 
   def create 
-    render plain: params[:article]
+    @article = Article.new(params.require(:articles).permit(:title, :description))
+    if @article.save
+      flash[:notice] = "Article was created successfully."
+      redirect_to @article
+    else
+      render 'new'
+    end 
   end 
+
+  def edit 
+    @article = Article.find(params[:id])
+  end 
+
+  def update 
+    @article = Article.find(params[:id])
+    if @article.update(params.require(:article).permit(:title, :description))
+      flash[:notice] = "Article was updated successfully."
+      redirect_to @article 
+    else 
+      render 'edit'
+    end 
+  end 
+
 end 
+
