@@ -9,8 +9,8 @@
   </ul>
 <% end %>
 
-
-<%= form_with scope: :articles, url: articles_path, local: true do |f| %>
+<%# 여기서 scope :articles 였기 때문에 create에서 params.require(:articles)였어야 했던거였다. %>
+<%= form_with scope: :article, url: articles_path, local: true do |f| %>
 <p>
   <%= f.label :title %> <br>
   <%= f.text_field :title %>

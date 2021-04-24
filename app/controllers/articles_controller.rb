@@ -1,8 +1,6 @@
 class ArticlesController < ApplicationController
   def show #articles/id 
-    #byebug 
     @article = Article.find(params[:id])
-    
   end 
 
   def index # articles 
@@ -10,11 +8,11 @@ class ArticlesController < ApplicationController
   end 
 
   def new # articles/new 
-    @article = Article.new
+    @article = Article.new  #nil로 채워져있는 빈 오브젝트 생성 
   end 
 
   def create 
-    @article = Article.new(params.require(:articles).permit(:title, :description))
+    @article = Article.new(params.require(:article).permit(:title, :description))
     if @article.save
       flash[:notice] = "Article was created successfully."
       redirect_to @article
@@ -35,6 +33,12 @@ class ArticlesController < ApplicationController
     else 
       render 'edit'
     end 
+  end 
+
+  def destroy 
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path
   end 
 
 end 
