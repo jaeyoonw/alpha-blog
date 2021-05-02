@@ -30,7 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  #즉, 간단히말해 이것은 그룹개발, 테스트 환경 전용이며 보편적으로 사용되지 않는 것들 
+  #즉, 간단히말해 이것은 개발, 테스트 환경 전용이며 보편적으로 사용되지 않는 것들 
 
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Use sqlite3 as the database for Active Record
