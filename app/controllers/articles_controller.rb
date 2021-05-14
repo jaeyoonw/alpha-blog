@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :show, :destroy]
+  # index, new, create 는 제외 
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def show #articles/id 
   end 
@@ -8,11 +9,11 @@ class ArticlesController < ApplicationController
     @articles = Article.all 
   end 
 
-  def new # articles/new 
+  def new # articles/new
     @article = Article.new  #nil로 채워져있는 빈 오브젝트 생성 
   end 
 
-  def create 
+  def create
     @article = Article.new(article_params)
     if @article.save
       flash[:notice] = "Article was created successfully."
