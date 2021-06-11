@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
   end 
 
   def article_params
-    params.require(:article).permit(:title, :description) 
+    params.require(:article).permit(:title, :description) # 화이트 리스트 등록
   end 
 end 
 
