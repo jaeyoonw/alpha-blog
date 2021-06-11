@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-6">
-    <% if @article.errors.any? %>
+    <% if obj.errors.any? %>
       <div class="alert alert-danger alert-dismissible fade show " role="alert">
         <div class="d-flex">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
@@ -9,7 +9,7 @@
           <h4 class="alert-heading">The following errors prevented the article from being saved</h4>
         </div>
         <ul>
-          <% @article.errors.full_messages.each do |msg| %>
+          <% obj.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul> 
