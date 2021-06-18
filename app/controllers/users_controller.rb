@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 
   def index 
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 5)  # 1 page에 게시물이 5개 이상인 경우 페이지가 생겨남.
   end 
 
   def show 
     @user = User.find(params[:id])
-    @articles = @user.articles
+    @articles = @user.articles.paginate(page: params[:page], per_page: 5) 
   end 
 
   def new 
