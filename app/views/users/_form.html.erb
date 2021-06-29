@@ -1,5 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-6">
+  <!-- 여기서 @user는 users_controller에서 보내져온 인스턴스 변수다.  -->
     <%= form_with(model: @user, class: "shadow p-3 mb-5 bg-info rounded", local: true ) do |f| %>
       <div class="mb-3 row">
         <%= f.label :username, class: "col-2 col-form-label text-light" %>

@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
     !!current_user # 현재 사용하고 있는 유저가 존재한다면? true를 반환
   end 
 
+  def require_user 
+    if !logged_in?
+      flash[:alert] = "You must be logged in to perform that action !"
+      redirect_to login_path
+    end
+  end 
 end

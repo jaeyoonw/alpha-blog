@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   # index, new, create 는 제외 
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def show #articles/id 
   end 
@@ -50,6 +52,13 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description) # 화이트 리스트 등록
+  end
+  
+  def require_same_user # 이 액션은 articles에만 해당되므로 application_controller에 추가 하지 않고 여기에다 추가한다. 
+    if @article.user != current_user
+      flash[:alert] = "You can only edit or delete your own article"
+      redirect_to @article
+    end 
   end 
 end 
 

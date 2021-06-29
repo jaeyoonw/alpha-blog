@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, ]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+
 
   def index 
     @users = User.paginate(page: params[:page], per_page: 5)  # 1 page에 게시물이 5개 이상인 경우 페이지가 생겨남.
@@ -36,6 +39,13 @@ class UsersController < ApplicationController
     end 
   end 
 
+  def destroy 
+    @user.destroy
+    session[:user_id] = nil
+    flash[:notice] = "Account and all associated articles successfully deleted"
+    redirect_to articles_path
+  end  
+
   private 
 
   def user_params
@@ -44,5 +54,12 @@ class UsersController < ApplicationController
 
   def set_user 
     @user = User.find(params[:id])
+  end 
+
+  def require_same_user 
+    if @user != current_user
+      flash[:alert] = "You can only edit your own account"
+      redirect_to @user
+    end 
   end 
 end 
