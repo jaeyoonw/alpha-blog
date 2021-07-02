@@ -55,7 +55,8 @@ class ArticlesController < ApplicationController
   end
   
   def require_same_user # 이 액션은 articles에만 해당되므로 application_controller에 추가 하지 않고 여기에다 추가한다. 
-    if @article.user != current_user
+    if @article.user != current_user && !current_user.admin?
+      # 내 게시글이 아님과 동시에 어드민이 아니면 => 내가 쓴 게시글이거나, 어드민이면 수정 가능하다. 
       flash[:alert] = "You can only edit or delete your own article"
       redirect_to @article
     end 
