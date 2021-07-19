@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
   end 
 
   def create
+    byebug
     @article = Article.new(article_params)
     #@article.user = User.second  janedoe3 
     @article.user = current_user
@@ -51,7 +52,7 @@ class ArticlesController < ApplicationController
   end 
 
   def article_params
-    params.require(:article).permit(:title, :description) # 화이트 리스트 등록
+    params.require(:article).permit(:title, :description, category_ids: [] ) # 화이트 리스트 등록
   end
   
   def require_same_user # 이 액션은 articles에만 해당되므로 application_controller에 추가 하지 않고 여기에다 추가한다. 
