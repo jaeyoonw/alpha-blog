@@ -1,0 +1,11 @@
+<%= form_with(model: @category, class: "shadow p-3 mb-5 bg-info rounded", local: true ) do |f| %>
+  <div class="mb-3 row">
+    <%= f.label :name, "Category Name", class: "col-2 col-form-label text-light" %>
+    <div class="col-10">
+      <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "Enter a name" %>
+    </div>
+  </div>
+  <div class="mb-3 row justify-content-center">
+    <%= f.submit class: "col-3 btn btn-outline-light btn-lg" %>
+  </div>
+<% end %>

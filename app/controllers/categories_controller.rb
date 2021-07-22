@@ -15,12 +15,27 @@ class CategoriesController < ApplicationController
     end 
   end 
 
+  def edit 
+    @category = Category.find(params[:id]) # edit창을 불러오면서 내가 수정하고싶은 카테고리의 데이터를 가져온다. 
+  end 
+
+  def update 
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      flash[:notice] = "Category name updated successfully"
+      redirect_to @category
+    else 
+      render 'edit'
+    end 
+  end 
+
   def index 
     @categories = Category.paginate(page: params[:page], per_page: 5)
   end 
 
   def show 
-    @category = Category.find(params[:id])
+    @category = Category.find(params[:id]) # @category는 카테고리 뷰에서 내가 클릭한 카테고리
+    @articles = @category.articles.paginate(page: params[:page], per_page: 5) # 그 카테고리로 지정된 모든 article들을 꺼낸다. 
   end 
 
   private 

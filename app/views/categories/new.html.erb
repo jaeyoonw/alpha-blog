@@ -3,18 +3,9 @@
 <%= render 'shared/errors', obj: @category %>
 <div class="row justify-content-center">
   <div class="col-6">
-  <!-- 여기서 @user는 users_controller에서 보내져온 인스턴스 변수다.  -->
-    <%= form_with(model: @category, class: "shadow p-3 mb-5 bg-info rounded", local: true ) do |f| %>
-      <div class="mb-3 row">
-        <%= f.label :name, "Category Name", class: "col-2 col-form-label text-light" %>
-        <div class="col-10">
-          <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "Enter a name" %>
-        </div>
-      </div>
-        
-      <div class="mb-3 row justify-content-center">
-        <%= f.submit class: "col-3 btn btn-outline-light btn-lg" %>
-      </div>
-    <% end %>
+    <%= render 'form' %>
+  </div>
+  <div class="mb-3">
+    <%= link_to '[ Cancel and return to categories listing ]', categories_path %>
   </div>
 </div> 
